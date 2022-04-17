@@ -1,4 +1,3 @@
-import Nav from "./Nav"
 import NavBar from "./component/NavBar"
 
 const Header = () => {
