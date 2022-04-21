@@ -9,7 +9,6 @@ const App = () => {
     return (
         <>
             <Header/>
-            <Main/>
             <ItemListContainer greeting="Hola, bienvenido a mi tienda!"/>
             <Footer/>
         </>
