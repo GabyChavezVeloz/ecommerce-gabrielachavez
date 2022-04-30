@@ -59,12 +59,13 @@ const ItemListContainer = ({greeting}) => {
 
   return (
     <>
-      <main>
-        <div>{greeting}</div>
+
+        <div>
+          <h2>{greeting}</h2>
+        </div>
         {/* <ItemCount stock={10} init={1} onAdd={onAdd}/> */}
         <ItemList productList={productList}/>
-      </main>
-      
+
     </>
     
   )

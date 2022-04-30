@@ -4,12 +4,12 @@ const ItemList = ({productList}) => {
 
   return (
     <>
-      
-      <ul>
+      <div className="card-container">
         {productList.map((producto,indice)=>{
          return <Item key={producto.id} producto={producto}/>
         })}
-      </ul> 
+      </div>
+     
      
   
   </>
