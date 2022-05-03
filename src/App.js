@@ -1,6 +1,7 @@
 import Footer from "./Footer"
 import Header from "./Header"
 import Main from "./Main"
+import { BrowserRouter } from "react-router-dom"
 
 
 
@@ -9,9 +10,12 @@ const App = () => {
     //return <p> Hola Mundo </p>
     return (
         <>
-            <Header/>
-            <Main/>
-            <Footer/>
+            <BrowserRouter>
+                <Header/>
+                <Main/>
+                <Footer/>
+            </BrowserRouter>
+            
         </>
      )
    

@@ -6,6 +6,7 @@ import tenis from "./tenisKitty.png"
 import botas from "./powerKitty.png"
 import sidney from "./sidney.png"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
 
 const productList = [
@@ -22,7 +23,7 @@ const productList = [
     title:"Tenis Kitty",
     description: "Comodos y bonitos tenis con estampado de Kitty y suela ancha",
     price: 200,
-    category: ["tenis","kitty"],
+    category: ["comodos","kitty"],
     pictureUrl: tenis
   },
   {
@@ -30,7 +31,7 @@ const productList = [
     title:"Power Kitty",
     description: "Bonitas botas en color negro con estampado de Kitty, se pueden combinar con todo!",
     price: 300,
-    category: ["botas","kitty"],
+    category: ["comodos","kitty"],
     pictureUrl: botas
   },
   {
@@ -43,19 +44,37 @@ const productList = [
     }
   ]
 
-   const promesa = new Promise((res)=>{
-    setTimeout(()=>{
-        res(productList)
-    }, 2000)
-})
+   
 
 const ItemListContainer = ({greeting}) => {
+
+  
 
   const onAdd =(contador) =>{
     console.log("Productos a comprar: "+contador)
   }
 
   const [productos, setProductos] = useState([])
+  const {id} = useParams()
+
+  const promesa = new Promise((res)=>{
+    setTimeout(()=>{
+      if(id==undefined){
+        res(productList)
+      }else{
+        const cat = productList.filter((producto)=>{
+          const result = producto.category.filter ((productCategory)=>{
+            return productCategory == id
+          })
+          return result.length > 0
+          
+        })
+        res(cat)
+      }
+
+        
+    }, 2000)
+  })
 
     useEffect(() =>{
         promesa
@@ -64,7 +83,7 @@ const ItemListContainer = ({greeting}) => {
             })
 
     
-    })
+    }, [id])
 
   return (
     <>
