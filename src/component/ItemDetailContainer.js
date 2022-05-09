@@ -14,6 +14,7 @@ const productList = [
     description: "Bonitos zapatos tipo flats en color negro con cara de gato y bigotes dorados, con comoda plantilla",
     price: 100,
     category: ["flats","cat"],
+    stock: 5,
     pictureUrl:abril
   },
   {
@@ -22,6 +23,7 @@ const productList = [
     description: "Comodos y bonitos tenis con estampado de Kitty y suela ancha",
     price: 200,
     category: ["comodos","kitty"],
+    stock: 5,
     pictureUrl: tenis
   },
   {
@@ -30,6 +32,7 @@ const productList = [
     description: "Bonitas botas en color negro con estampado de Kitty, se pueden combinar con todo!",
     price: 300,
     category: ["comodos","kitty"],
+    stock: 5,
     pictureUrl: botas
   },
   {
@@ -38,6 +41,7 @@ const productList = [
     description: "Bonitos zapatos tipo flats en color beige con cara de gato, con comoda plantilla",
     price: 400,
     category: ["flats","cat"],
+    stock: 5,
     pictureUrl: sidney
     }
   ]

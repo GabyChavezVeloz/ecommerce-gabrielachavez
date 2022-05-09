@@ -1,4 +1,3 @@
-import ItemCount from "./ItemCount"
 import ItemList from "./ItemList"
 import img from "./box.png"
 import abril from "./abril.png"
@@ -48,12 +47,7 @@ const productList = [
 
 const ItemListContainer = ({greeting}) => {
 
-  
-
-  const onAdd =(contador) =>{
-    console.log("Productos a comprar: "+contador)
-  }
-
+  const [loading, setLoading] = useState(true)
   const [productos, setProductos] = useState([])
   const {id} = useParams()
 
@@ -79,11 +73,31 @@ const ItemListContainer = ({greeting}) => {
     useEffect(() =>{
         promesa
             .then((productList)=>{
-                setProductos(productList)
+              setLoading(false)
+              setProductos(productList)
+                
             })
 
     
     }, [id])
+
+    if(loading){
+      return (
+        <div><p>Cargando..</p></div>
+      )
+    }else{
+      return (
+        <>
+    
+            <div>
+              <h2>{greeting}</h2>
+            </div>
+            <ItemList productList={productos}/>
+    
+        </>
+        
+      )
+    }
 
   return (
     <>
@@ -91,7 +105,6 @@ const ItemListContainer = ({greeting}) => {
         <div>
           <h2>{greeting}</h2>
         </div>
-        {/* <ItemCount stock={10} init={1} onAdd={onAdd}/> */}
         <ItemList productList={productos}/>
 
     </>
