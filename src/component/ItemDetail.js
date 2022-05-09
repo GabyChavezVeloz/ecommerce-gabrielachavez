@@ -1,15 +1,18 @@
 import { useState } from "react"
 import ItemCount from "./ItemCount"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import {contexto} from "./CartContext"
 
 
 const ItemDetail =({item}) => {
+
+  const {addItem} = useContext(contexto)
 
   const navigate = useNavigate()
 
   const handleClick = () => {
     navigate(`/carrito`)
-
   }
 
   const [count, setCount] = useState(0)
@@ -17,6 +20,7 @@ const ItemDetail =({item}) => {
   const onAdd =(contador) =>{
     console.log("Productos a comprar: "+contador)
     setCount(contador)
+    addItem(item, contador)
   }
 
   if(count >0){
