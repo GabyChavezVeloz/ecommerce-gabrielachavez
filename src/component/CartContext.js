@@ -7,17 +7,27 @@ const MiCustomProvider = ({children}) => {
     
     const [carrito, setCarrito] = useState([])
     const [cantidad_total, setCantidad_total] = useState(0)
-    const [precio_total, serPrecio_total] = useState(0)
+    const [precio_total, setPrecio_total] = useState(0)
 
     const addItem = (item, quantity) =>{
         if(!isInCart(item.id)){
             setCarrito([...carrito, {item,quantity}])
+            setPrecio_total(precio_total + (item.price * quantity))
+            setCantidad_total(cantidad_total + quantity)
         }else{
             console.log("El producto ya esta en el carrito!")
         }
     }
 
-    const removeItem = (itemId) => {}
+    const removeItem = (itemId) => {
+        let item = getItem (itemId)
+
+        setPrecio_total(precio_total - (item.item.price * item.quantity))
+        setCantidad_total(cantidad_total - item.quantity)
+
+        setCarrito(carrito.filter(item=>item.item.id!=itemId))
+
+    }
 
     const clear = () => {
         setCarrito([])
@@ -30,6 +40,10 @@ const MiCustomProvider = ({children}) => {
         }else{
             return false
         }
+    }
+
+    const getItem = (id) => {
+        return carrito.find((item) => item.item.id === id)
     }
 
     const valorDelContexto = {

@@ -10,8 +10,7 @@ const NavBar = () => {
           <Link to="/category/cat" className="nav__link">cat</Link>
           <Link to="/category/comodos" className="nav__link">comodos</Link>
           <Link to="/category/kitty" className="nav__link">kitty</Link>
-
-            <a href="#" className="nav_link"><CartWidget/></a>
+          <CartWidget/>
         </nav>
         
    </>

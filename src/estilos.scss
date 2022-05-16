@@ -86,9 +86,28 @@
   }
 }
 
-.detail{
+.detail {
   img{
     width: 30%;
   }
 }
+
+.cartList {
+  border:1px solid black;
+  min-width: 300px;
+  width: 300px;
+  height: 100%;
+  padding: 1rem 1rem 1rem 1rem;
+}
+.cartItem {
+  min-width: 200px;
+  width: 200px;
+  height: 100%;
+}
+
+.cartImg {
+  width: 90%;
+  height: 90%;
+}
+
 
