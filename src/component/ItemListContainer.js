@@ -1,49 +1,8 @@
 import ItemList from "./ItemList"
-import img from "./box.png"
-import abril from "./abril.png"
-import tenis from "./tenisKitty.png"
-import botas from "./powerKitty.png"
-import sidney from "./sidney.png"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-
-
-const productList = [
-  {
-    id: 1,
-    title:"Abril",
-    description: "Bonitos zapatos tipo flats en color negro con cara de gato y bigotes dorados, con comoda plantilla",
-    price: 100,
-    category: ["flats","cat"],
-    pictureUrl:abril
-  },
-  {
-    id: 2,
-    title:"Tenis Kitty",
-    description: "Comodos y bonitos tenis con estampado de Kitty y suela ancha",
-    price: 200,
-    category: ["comodos","kitty"],
-    pictureUrl: tenis
-  },
-  {
-    id: 3,
-    title:"Power Kitty",
-    description: "Bonitas botas en color negro con estampado de Kitty, se pueden combinar con todo!",
-    price: 300,
-    category: ["comodos","kitty"],
-    pictureUrl: botas
-  },
-  {
-    id: 4,
-    title:"sidney",
-    description: "Bonitos zapatos tipo flats en color beige con cara de gato, con comoda plantilla",
-    price: 400,
-    category: ["flats","cat"],
-    pictureUrl: sidney
-    }
-  ]
-
-   
+import {db} from "../firebase"
+import {collection, getDocs, query, where} from "firebase/firestore"
 
 const ItemListContainer = ({greeting}) => {
 
@@ -51,34 +10,52 @@ const ItemListContainer = ({greeting}) => {
   const [productos, setProductos] = useState([])
   const {id} = useParams()
 
-  const promesa = new Promise((res)=>{
-    setTimeout(()=>{
-      if(id==undefined){
-        res(productList)
-      }else{
-        const cat = productList.filter((producto)=>{
-          const result = producto.category.filter ((productCategory)=>{
-            return productCategory == id
-          })
-          return result.length > 0
-          
-        })
-        res(cat)
-      }
-
-        
-    }, 2000)
-  })
+  const productosCollection = collection(db,"productos")
 
     useEffect(() =>{
-        promesa
-            .then((productList)=>{
-              setLoading(false)
-              setProductos(productList)
-                
-            })
 
-    
+      if(id==undefined){
+        
+        const consulta = getDocs(productosCollection)
+        consulta
+          .then((resultado)=>{
+        
+            const productos = resultado.docs.map(doc=>{
+              const productoConId = doc.data()
+              productoConId.id = doc.id
+              return productoConId
+            })
+        
+          setProductos(productos)
+          setLoading(false)
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+      }else{
+
+        const filtro = query(productosCollection, where("category","array-contains",id))
+        const consulta = getDocs(filtro)
+
+        consulta
+          .then((resultado)=>{
+        
+            const productos = resultado.docs.map(doc=>{
+              const productoConId = doc.data()
+              productoConId.id = doc.id
+              return productoConId
+            })
+        
+            console.log(productos.data)
+          setProductos(productos)
+          setLoading(false)
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+      }
+
+      
     }, [id])
 
     if(loading){
@@ -99,17 +76,6 @@ const ItemListContainer = ({greeting}) => {
       )
     }
 
-  return (
-    <>
-
-        <div>
-          <h2>{greeting}</h2>
-        </div>
-        <ItemList productList={productos}/>
-
-    </>
-    
-  )
 }
 
 export default ItemListContainer

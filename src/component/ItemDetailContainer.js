@@ -1,52 +1,8 @@
 import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail"
-import abril from "./abril.png"
-import tenis from "./tenisKitty.png"
-import botas from "./powerKitty.png"
-import sidney from "./sidney.png"
 import { useParams } from "react-router-dom"
-
-
-const productList = [
-  {
-    id: 1,
-    title:"Abril",
-    description: "Bonitos zapatos tipo flats en color negro con cara de gato y bigotes dorados, con comoda plantilla",
-    price: 100,
-    category: ["flats","cat"],
-    stock: 5,
-    pictureUrl:abril
-  },
-  {
-    id: 2,
-    title:"Tenis Kitty",
-    description: "Comodos y bonitos tenis con estampado de Kitty y suela ancha",
-    price: 200,
-    category: ["comodos","kitty"],
-    stock: 5,
-    pictureUrl: tenis
-  },
-  {
-    id: 3,
-    title:"Power Kitty",
-    description: "Bonitas botas en color negro con estampado de Kitty, se pueden combinar con todo!",
-    price: 300,
-    category: ["comodos","kitty"],
-    stock: 5,
-    pictureUrl: botas
-  },
-  {
-    id: 4,
-    title:"sidney",
-    description: "Bonitos zapatos tipo flats en color beige con cara de gato, con comoda plantilla",
-    price: 400,
-    category: ["flats","cat"],
-    stock: 5,
-    pictureUrl: sidney
-    }
-  ]
-
-
+import {db} from "../firebase"
+import { getDoc, doc, collection} from  "firebase/firestore"
 
 const ItemDetailContainer =() => {
 
@@ -54,23 +10,23 @@ const ItemDetailContainer =() => {
   const {id} = useParams()
   const [cargando,setCargando] = useState(true)
 
-  const getItem = new Promise((res)=>{
-    setTimeout(()=>{
-      const resultado = productList.filter((producto)=>{
-        return producto.id == id
-      })[0]
-      res(resultado)
-    }, 2000)
-  })
-
     useEffect(() =>{
-        getItem
-            .then((item)=>{
-              setItem(item)
-              setCargando(false)
-            })
 
-    
+        const productosCollection = collection(db,"productos")
+        const resultadoDelDoc = doc(productosCollection, id)
+        const consulta = getDoc(resultadoDelDoc)
+        
+        consulta  
+          .then((resultado) => {
+            const data = resultado.data()
+            data.id=resultado.id;
+            setItem(data)
+            setCargando(false)
+          })
+          .catch((error) => {
+            console.log(error)
+            setCargando(false)
+          })
     })
 
     if(cargando){
