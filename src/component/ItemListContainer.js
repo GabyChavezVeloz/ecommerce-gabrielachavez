@@ -46,7 +46,6 @@ const ItemListContainer = ({greeting}) => {
               return productoConId
             })
         
-            console.log(productos.data)
           setProductos(productos)
           setLoading(false)
           })

@@ -25,12 +25,14 @@ const MiCustomProvider = ({children}) => {
         setPrecio_total(precio_total - (item.item.price * item.quantity))
         setCantidad_total(cantidad_total - item.quantity)
 
-        setCarrito(carrito.filter(item=>item.item.id!=itemId))
+        setCarrito(carrito.filter(item=>item.item.id!==itemId))
 
     }
 
-    const clear = () => {
+    const clearCart = () => {
         setCarrito([])
+        setCantidad_total(0)
+        setPrecio_total(0)
     }
 
     const isInCart = (id) => {
@@ -52,7 +54,7 @@ const MiCustomProvider = ({children}) => {
         carrito,
         addItem,
         removeItem,
-        clear,
+        clearCart,
         isInCart
     }
 

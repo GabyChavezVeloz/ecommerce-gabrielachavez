@@ -18,7 +18,6 @@ const ItemDetail =({item}) => {
   const [count, setCount] = useState(0)
 
   const onAdd =(contador) =>{
-    console.log("Productos a comprar: "+contador)
     setCount(contador)
     addItem(item, contador)
   }
@@ -31,8 +30,8 @@ const ItemDetail =({item}) => {
               <p>{item.title}</p>
               <p>{item.description}</p>
               <p>Precio: {item.price}</p>
-              <p>Categorias : {item.category.map(category=>{
-                return <span>{category}</span>
+              <p>Categorias : {item.category.map((category, index)=>{
+                return <span key={index}>{category}</span>
               })} </p>
               <p>Stock: {item.stock}</p>
               <button onClick={handleClick}>Terminar compra </button>
@@ -48,8 +47,8 @@ const ItemDetail =({item}) => {
               <p>{item.title}</p>
               <p>{item.description}</p>
               <p>Precio: {item.price}</p>
-              <p>Categorias : {item.category.map(category=>{
-                return <span>{category}</span>
+              <p>Categorias : {item.category.map((category, index)=>{
+                return <span key={index}>{category}</span>
               })} </p>
               <p>Stock: {item.stock}</p>
               <ItemCount init={1} stock={item.stock} onAdd={onAdd}/>
