@@ -30,3 +30,7 @@ Este proyecto se realizó para aplicar los conocimientos adquiridos en el curso 
 
 * La funcionalidad de agregar productos al carrito solo permite agregarlo si el producto no existe en él, de lo contrario mostrará un mensaje indicando que el producto ya fue agregado.
 * En la sección de carrito se hizo una validación cuando se piden los datos del usuario, en caso de que vengan vacios se pone un valor por default y ese será guardado en la base de datos. En los modulos hijos se agrego el memo para evitar que se esten actualziando esa información cada que se tiene un cambio en los input.
+
+## Deploy
+
+El deploy de la página está en este [link](https://629d686a0db4083de6ce3ae0--clever-alfajores-e65323.netlify.app/)
