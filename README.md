@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Bienvenido a Cat Shoes!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cat Shoes es una aplicación creada en React JS para la venta de zapatos con temática de gatos. Existen varios modelos para poder elegir y finalizar una compra.
 
-## Available Scripts
+Este proyecto se realizó para aplicar los conocimientos adquiridos en el curso y al mismo tiempo tener un sito donde se puedan encontrar zapatos con modelos de gatos, ya que no es muy común encotnrar zapatos con este tema.
 
-In the project directory, you can run:
 
-### `npm start`
+## Herrarmientas utilizadas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **react 18.0.0 :** Es la base del código, se uso para la estructora y todos los componentes de la aplicación. Es una libreria que contiene la funcionalidad base de los componentes de react.
+* **firebase 9.8.1 :** Usado para crear una conexión a la base de datos y poder almacenar infomación y leerla de ahí. Permite crear colecciones, obtener y agregar objetos en el tiempo de ejecución. La documentación sirvió de guía para implementar los metódos. Se puede encontrar [aquí](https://firebase.google.com/docs/reference/js/firestore_?hl=en&authuser=0)
+* **react-dom 18.0.0 :** Se uso para crear la estructura del proyecto, para inicializar el proyecto.
+* **react-router-dom 6.3.0 :** Esta dependencia se usó para hacer la navegación entre páginas, redireccionar a otras páginas al dar click en un componente.
+* **react-scripts 5.0.0 :** Dependencia que sirve para ejecutar los scripts que vienen en el archivo package.json.
+* **react-toastify 9.0.2 :** Fue útil para mostrar mensajes en pantalla, ya sean informativos o de error s través de una notificación.
+* **sass 1.50.0 :** Se utilizó para la creación de los CSS de la aplicación.
+* **testing-library/jest-dom 5.16.4 :** Agregada por default al crear el proyecto con create-react-app.
+* **testing-library/react 12.1.4 :** Agregada por default al crear el proyecto con create-react-app.
+* **testing-library/user-event 13.5.0 :** Agregada por default al crear el proyecto con create-react-app.
+* **web-vitals 2.1.4 :** Agregada por default al crear el proyecto con create-react-app.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pasos de instalación:
+1. Abrir la consola de git bash y descargar el código con el comando *git clone https://github.com/GabyChavezVeloz/ecommerce-gabrielachavez*
+1. Abrir la consola de windows y navegar hasta la carpeta .../ecommerce-gabrielachavez
+1. Ejecutar el comando *npm install*
+1. Una vez instaladas las dependencias, ejecutar el comando *npm start* para inicar la aplicación en un server local.
+1. Ir a la dirección [http://localhost:3000/](http://localhost:3000/)
 
-### `npm test`
+## Funcionalidad específica:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* La funcionalidad de agregar productos al carrito solo permite agregarlo si el producto no existe en él, de lo contrario mostrará un mensaje indicando que el producto ya fue agregado.
+* En la sección de carrito se hizo una validación cuando se piden los datos del usuario, en caso de que vengan vacios se pone un valor por default y ese será guardado en la base de datos. En los modulos hijos se agrego el memo para evitar que se esten actualziando esa información cada que se tiene un cambio en los input.

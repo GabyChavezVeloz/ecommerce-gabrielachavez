@@ -10,21 +10,18 @@ const Item = ({producto}) => {
   }
 
   return (
-    <>
-      <div className="card">
-        <p>{producto.title}</p>
-        <p>{producto.description}</p>
-        <p>{producto.price}</p>
-        <p><img src={producto.pictureUrl}/></p>  
-        <p>Categorias : {producto.category.map((category, index)=>{
+    
+    <div className="card">
+      <p>{producto.title}</p>
+      <p>{producto.description}</p>
+      <p>{producto.price}</p>
+      <p><img src={producto.pictureUrl} alt=""/></p>  
+      <p>Categorias : {producto.category.map((category, index)=>{
         return <span key={index}>{category}</span>
       })} </p>
-        <button onClick={handleClick}>Detalles...</button>
-      </div>  
-            
-            
-        
-    </>
+      <button onClick={handleClick}>Detalles...</button>
+    </div>  
+
   )
 }
 

@@ -1,4 +1,5 @@
 import CarritoItem from "./CarritoItem"
+import { memo } from "react"
 
 const CarritoLista = ({carrito, deleteitem}) => {
     return (
@@ -12,4 +13,4 @@ const CarritoLista = ({carrito, deleteitem}) => {
   
 }
 
-export default CarritoLista
+export default memo(CarritoLista)

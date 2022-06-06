@@ -1,4 +1,5 @@
 import { createContext, useState} from "react";
+import { toast } from "react-toastify"
 
 export const contexto = createContext()
 const {Provider} = contexto
@@ -15,7 +16,7 @@ const MiCustomProvider = ({children}) => {
             setPrecio_total(precio_total + (item.price * quantity))
             setCantidad_total(cantidad_total + quantity)
         }else{
-            console.log("El producto ya esta en el carrito!")
+            toast.info("El producto ya está en el carrito!")
         }
     }
 

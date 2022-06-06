@@ -3,6 +3,7 @@ import ItemDetail from "./ItemDetail"
 import { useParams } from "react-router-dom"
 import {db} from "../firebase"
 import { getDoc, doc, collection} from  "firebase/firestore"
+import { toast } from "react-toastify"
 
 const ItemDetailContainer =() => {
 
@@ -24,8 +25,7 @@ const ItemDetailContainer =() => {
             setCargando(false)
           })
           .catch((error) => {
-            console.log(error)
-            setCargando(false)
+            toast.error(error.message)
           })
     })
 

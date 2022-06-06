@@ -22,41 +22,21 @@ const ItemDetail =({item}) => {
     addItem(item, contador)
   }
 
-  if(count >0){
-    return (
-      <>
-          <div className="detail">
-              <p><img src={item.pictureUrl}/></p>
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <p>Precio: {item.price}</p>
-              <p>Categorias : {item.category.map((category, index)=>{
-                return <span key={index}>{category}</span>
-              })} </p>
-              <p>Stock: {item.stock}</p>
-              <button onClick={handleClick}>Terminar compra </button>
-          </div>
-          
-      </>
-    )
-  }else{
-    return (
-      <>
-          <div className="detail">
-              <p><img src={item.pictureUrl}/></p>
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <p>Precio: {item.price}</p>
-              <p>Categorias : {item.category.map((category, index)=>{
-                return <span key={index}>{category}</span>
-              })} </p>
-              <p>Stock: {item.stock}</p>
-              <ItemCount init={1} stock={item.stock} onAdd={onAdd}/>
-          </div>
-          
-      </>
-    )
-  }
+
+  return(
+    <div className="detail">
+      <p><img src={item.pictureUrl} alt=""/></p>
+      <p>{item.title}</p>
+      <p>{item.description}</p>
+      <p>Precio: {item.price}</p>
+      <p>Categorias : {item.category.map((category, index)=>{
+        return <span key={index}>{category}</span>
+      })} </p>
+      <p>Stock: {item.stock}</p>
+      {count>0 ? <button onClick={handleClick}>Terminar compra </button> : <ItemCount init={1} stock={item.stock} onAdd={onAdd}/>}
+      
+    </div>
+  )
 
   
 }

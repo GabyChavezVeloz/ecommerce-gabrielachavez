@@ -3,41 +3,32 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import {db} from "../firebase"
 import {collection, getDocs, query, where} from "firebase/firestore"
+import { toast } from "react-toastify"
 
 const ItemListContainer = ({greeting}) => {
 
-  const [loading, setLoading] = useState(true)
+  const [cargando,setCargando] = useState(true)
   const [productos, setProductos] = useState([])
   const {id} = useParams()
 
-  const productosCollection = collection(db,"productos")
 
     useEffect(() =>{
 
-      if(id==undefined){
+      const productosCollection = collection(db,"productos")
+      let consulta
+
+      if(id===undefined){
         
-        const consulta = getDocs(productosCollection)
-        consulta
-          .then((resultado)=>{
+        consulta = getDocs(productosCollection)
         
-            const productos = resultado.docs.map(doc=>{
-              const productoConId = doc.data()
-              productoConId.id = doc.id
-              return productoConId
-            })
-        
-          setProductos(productos)
-          setLoading(false)
-          })
-          .catch((error)=>{
-            console.log(error)
-          })
       }else{
 
         const filtro = query(productosCollection, where("category","array-contains",id))
-        const consulta = getDocs(filtro)
+        consulta = getDocs(filtro)
 
-        consulta
+      }
+
+      consulta
           .then((resultado)=>{
         
             const productos = resultado.docs.map(doc=>{
@@ -47,17 +38,16 @@ const ItemListContainer = ({greeting}) => {
             })
         
           setProductos(productos)
-          setLoading(false)
+          setCargando(false)
           })
           .catch((error)=>{
-            console.log(error)
+            toast.error(error.message)
           })
-      }
 
       
     }, [id])
 
-    if(loading){
+    if(cargando){
       return (
         <div><p>Cargando..</p></div>
       )
